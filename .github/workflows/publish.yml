@@ -1,9 +1,8 @@
-name: CI
+name: Publish Package on Release
 
 on:
-  push:
-    branches:
-      - main
+  release:
+    types: [created]
 
 jobs:
   cov-korean:
@@ -20,7 +19,7 @@ jobs:
       - name: Run coverage
         run: bun run coverage
   deploy-korean:
-    name: Deploy @romanize/korean to npm
+    name: Publish @romanize/korean to npm
     needs: [cov-korean]
     runs-on: ubuntu-latest
     defaults:
@@ -31,6 +30,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: oven-sh/setup-bun@v2
         with:
+          bun-version: latest
           registry-url: "https://registry.npmjs.org"
           scope: "@romanize"
       - run: bun i -p --frozen-lockfile
