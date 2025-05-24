@@ -1,6 +1,5 @@
 # :abc: romanize
 
-[![Coverage Status](https://coveralls.io/repos/github/Kenny477/romanize/badge.svg?branch=main)](https://coveralls.io/github/Kenny477/romanize?branch=main)
 ![Coverage](https://img.shields.io/badge/coverage-87.2%25-yellow)
 
 A collection of packages to romanize text in various languages.
