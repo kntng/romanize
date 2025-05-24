@@ -1,0 +1,49 @@
+name: Code Coverage Badge
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  coverage-badge:
+    name: Update coverage badge
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Run coverage
+        run: bun run --cwd packages/korean ci:coverage
+      - name: Extract coverage percentage
+        id: coverage
+        run: |
+          total=$(grep -Po '^LF:\K\d+' ./packages/korean/coverage/lcov.info | paste -sd+ - | bc)
+          covered=$(grep -Po '^LH:\K\d+' ./packages/korean/coverage/lcov.info | paste -sd+ - | bc)
+          pct=$(echo "scale=1; 100 * $covered / $total" | bc)
+          echo "pct=$pct" >> $GITHUB_OUTPUT
+      - name: Update README with badge
+        run: |
+          pct=${{ steps.coverage.outputs.pct }}
+          pct_int=$(echo "$pct / 1" | bc)
+          if (( pct_int >= 90 )); then
+            color="brightgreen"
+          elif (( pct_int >= 80 )); then
+            color="yellow"
+          elif (( pct_int >= 70 )); then
+            color="orange"
+          else
+            color="red"
+          fi
+          set +H
+          badge="![Coverage](https://img.shields.io/badge/coverage-${pct}%25-${color})"
+          sed -i -E "s|!\[Coverage\]\(https://img\.shields\.io/badge/coverage-[^)]*\)|$badge|" README.md || true
+          sed -i -E "s|!\[Coverage\]\(\)|$badge|" README.md || true
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add README.md
+          if git diff-index --quiet HEAD; then
+            git commit -m "[action] - Update README.md with Lighthouse scores" || echo "Nothing to commit"
+            git push || echo "Nothing to push"
+          fi

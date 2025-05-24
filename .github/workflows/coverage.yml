@@ -1,0 +1,24 @@
+name: Code Coverage
+
+on:
+  pull_request:
+    paths:
+      - "**/*.ts"
+      - "**/*.js"
+      - ".github/workflows/coverage.yml"
+
+jobs:
+  cov-korean:
+    name: Run coverage for @romanize/korean
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/korean
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Run coverage
+        run: bun run coverage
+      # TODO: edit comment in PR with coverage output

@@ -1,0 +1,39 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  cov-korean:
+    name: Run coverage for @romanize/korean
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/korean
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Run coverage
+        run: bun run coverage
+  deploy-korean:
+    name: Deploy @romanize/korean to npm
+    needs: [cov-korean]
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/korean
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: oven-sh/setup-bun@v2
+        with:
+          registry-url: "https://registry.npmjs.org"
+          scope: "@romanize"
+      - run: bun i -p --frozen-lockfile
+      - run: bun run deploy
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}

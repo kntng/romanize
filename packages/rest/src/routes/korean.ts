@@ -1,5 +1,5 @@
 import Router from '@koa/router';
-import { romanize, RomanizationSystem } from 'korean';
+import { romanize, RomanizationSystem } from '@romanize/korean';
 export const korean = new Router();
 
 interface RomanizeRequest {
