@@ -3,7 +3,7 @@ import Koa from 'koa';
 import bodyParser from 'koa-bodyparser';
 import { korean } from './routes/korean';
 
-const app = new Koa();
+export const app = new Koa();
 const router = new Router();
 
 app.use(bodyParser());

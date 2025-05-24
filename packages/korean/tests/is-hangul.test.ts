@@ -1,4 +1,5 @@
-import { HangulTree } from '../lib/is-hangul';
+import { expect, test } from 'bun:test';
+import { HangulTree } from '../src/lib/is-hangul';
 
 test('isHangulChar', () => {
   const hangul = new HangulTree();

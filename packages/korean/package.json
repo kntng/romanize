@@ -1,24 +1,24 @@
 {
   "name": "@romanize/korean",
-  "version": "0.0.1",
+  "version": "0.1.2",
   "description": "Romanize Korean Hangul",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
     "dist/",
     "package.json"
   ],
   "scripts": {
-    "build": "npm run clean && tsc --outDir dist",
-    "clean": "rimraf dist",
-    "test": "jest",
-    "coverage": "jest --coverage --ci",
-    "deploy": "npm run build && npm publish --access public"
+    "build": "bunup src/index.ts --dts --splitting --minify --sourcemap=linked",
+    "coverage": "bun test --coverage",
+    "ci:coverage": "bun test --coverage --coverage-reporter=lcov",
+    "deploy": "bun run build && bun publish --access public"
   },
-  "author": "Kenneth Tang",
+  "author": "Kenneth Tang <kntng@kntng.dev>",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Kenny477/romanize"
+    "url": "https://github.com/kntng/romanize"
   },
   "keywords": [
     "korean",

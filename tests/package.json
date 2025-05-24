@@ -1,0 +1,14 @@
+{
+  "name": "@romanize/tests",
+  "description": "E2E tests for @romanize packages",
+  "private": true,
+  "module": "index.ts",
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@romanize/korean": "workspace:*"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "type": "module"
+}

@@ -1,6 +1,7 @@
-# Romanize
+# :abc: romanize
 
 [![Coverage Status](https://coveralls.io/repos/github/Kenny477/romanize/badge.svg?branch=main)](https://coveralls.io/github/Kenny477/romanize?branch=main)
+![Coverage](https://img.shields.io/badge/coverage-87.2%25-yellow)
 
 A collection of packages to romanize text in various languages.
 
@@ -8,7 +9,7 @@ A collection of packages to romanize text in various languages.
 
 | Language | Package                               | Version | Status         |
 | -------- | ------------------------------------- | ------- | -------------- |
-| Korean   | [@romanize/korean](/packages/korean/) | v0.0.1  | In development |
+| Korean   | [@romanize/korean](/packages/korean/) | v0.1.2  | In development |
 | Japanese | [@romanize/japanese]()                | n/a     | Planned        |
 
 ## Implementations

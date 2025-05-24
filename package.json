@@ -1,24 +1,18 @@
 {
   "name": "romanize",
+  "private": true,
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {},
   "devDependencies": {
-    "@babel/preset-env": "^7.20.2",
-    "@jest/globals": "^29.3.1",
-    "@nrwl/nx-cloud": "latest",
-    "@types/jest": "^29.2.5",
-    "babel-jest": "^29.3.1",
-    "coveralls": "^3.1.1",
-    "jest": "^29.3.1",
-    "nodemon": "^2.0.20",
-    "nx": "15.5.1",
-    "prettier": "^2.6.2",
-    "ts-jest": "^29.0.5",
-    "ts-node": "^10.9.1",
-    "typescript": "^4.9.4"
+    "prettier": "^2.8.8",
+    "typescript": "^5.8.3"
   },
   "workspaces": [
-    "packages/*"
-  ]
+    "packages/*",
+    "tests/"
+  ],
+  "dependencies": {
+    "bunup": "^0.8.6"
+  }
 }
