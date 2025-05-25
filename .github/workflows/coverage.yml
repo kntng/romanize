@@ -7,6 +7,10 @@ on:
       - "**/*.js"
       - ".github/workflows/coverage.yml"
 
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
   cov-korean:
     name: Run coverage for @romanize/korean
