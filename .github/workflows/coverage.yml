@@ -21,4 +21,7 @@ jobs:
           bun-version: latest
       - name: Run coverage
         run: bun run coverage
-      # TODO: edit comment in PR with coverage output
+      - uses: kntng/mdcov@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-path: packages/korean/coverage/lcov.info
