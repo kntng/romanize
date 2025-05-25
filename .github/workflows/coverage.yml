@@ -20,7 +20,7 @@ jobs:
         with:
           bun-version: latest
       - name: Run coverage
-        run: bun run coverage
+        run: bun run ci:coverage
       - uses: kntng/mdcov@v1
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
