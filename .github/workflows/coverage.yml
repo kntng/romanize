@@ -7,6 +7,10 @@ on:
       - "**/*.js"
       - ".github/workflows/coverage.yml"
 
+permissions:
+  issues: write
+  pull-requests: write
+
 jobs:
   cov-korean:
     name: Run coverage for @romanize/korean
@@ -20,5 +24,8 @@ jobs:
         with:
           bun-version: latest
       - name: Run coverage
-        run: bun run coverage
-      # TODO: edit comment in PR with coverage output
+        run: bun run ci:coverage
+      - uses: kntng/mdcov@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          lcov-path: packages/korean/coverage/lcov.info
