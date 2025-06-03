@@ -1,0 +1,11 @@
+[package]
+name = "romanize-korean"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+strum = { version = "0.27.1", features = ["derive"] }
+wasm-bindgen = "0.2.100"
